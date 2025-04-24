@@ -2,14 +2,14 @@
 #define VOLTAGECONTROLLER_H
 
 #include <Arduino.h>
-#include <SPI.h> // Do komunikacji SPI
+#include <SPI.h>
 
 class VoltageController {
 public:
     VoltageController(uint8_t csPin, uint8_t loadPin);
 
     void begin();
-    void update(byte rawValue);  // Odczyt z gałki 0–255
+    void update(byte rawValue);  
 
 private:
     uint8_t _csPin, _loadPin;
