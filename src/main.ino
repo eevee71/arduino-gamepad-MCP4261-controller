@@ -10,7 +10,5 @@ void setup() {
 void loop() {
 
   gamepad.update();
-    byte leftX = gamepad.getRightX();
-
-    delay(1000 / 60);  
+  delay(1000 / 60);  
 }
