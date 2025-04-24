@@ -3,7 +3,6 @@
 typedef const __FlashStringHelper* FlashStr;
 typedef const byte* PGM_BYTES_P;
 #define PSTR_TO_F(s) reinterpret_cast<const __FlashStringHelper*>(s)
-
 #define DEAF 255
 #define SELECT 0
 #define START 3
@@ -20,22 +19,7 @@ typedef const byte* PGM_BYTES_P;
 #define CROSS 14
 #define SQUARE 15
 
-const char ctrlTypeUnknown[] PROGMEM = "Unknown";
-const char ctrlTypeDualShock[] PROGMEM = "Dual Shock";
-const char ctrlTypeDsWireless[] PROGMEM = "Dual Shock Wireless";
-const char ctrlTypeGuitHero[] PROGMEM = "Guitar Hero";
-const char ctrlTypeOutOfBounds[] PROGMEM = "(Out of bounds)";
-
-const char* const controllerTypeStrings[PSCTRL_MAX + 1] PROGMEM = {
-    ctrlTypeUnknown,
-    ctrlTypeDualShock,
-    ctrlTypeDsWireless,
-    ctrlTypeGuitHero,
-    ctrlTypeOutOfBounds
-};
-
-GamepadController::GamepadController()
-    : haveController(false), slx(0), sly(0), srx(0), sry(0) {}
+GamepadController::GamepadController() : haveController(false), slx(0), sly(0), srx(0), sry(0) {}
 
 void GamepadController::setup() {
     Serial.begin(9600);
@@ -82,12 +66,6 @@ void GamepadController::configureController() {
         Serial.println(F("Cannot enter config mode"));
         return;
     }
-
-    PsxControllerType ctype = psx.getControllerType();
-    PGM_BYTES_P cname = reinterpret_cast<PGM_BYTES_P>(pgm_read_ptr(&(controllerTypeStrings[ctype < PSCTRL_MAX ? static_cast<byte>(ctype) : PSCTRL_MAX])));
-
-    Serial.print(F("Controller Type is: "));
-    Serial.println(PSTR_TO_F(cname));
 
     if (!psx.enableAnalogSticks()) Serial.println(F("Cannot enable analog sticks"));
     if (!psx.enableAnalogButtons()) Serial.println(F("Cannot enable analog buttons"));
@@ -146,3 +124,8 @@ byte GamepadController::psxButtonToIndex(PsxButtons psxButtons) {
     }
     return DEAF;
 }
+
+byte GamepadController::getRightX() const {
+    return srx;
+}
+

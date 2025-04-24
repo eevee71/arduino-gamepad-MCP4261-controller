@@ -1,11 +1,20 @@
+#include "VoltageController.h"
 #include "gamepadController.h"
 
-GamepadController controller;
+VoltageController voltCtrl(10, 8);  
+GamepadController gamepad;
 
 void setup() {
-    controller.setup();
+
+    voltCtrl.begin();
+    gamepad.setup();
 }
 
 void loop() {
-    controller.update();
+
+  gamepad.update();
+    byte leftX = gamepad.getRightX();
+    voltCtrl.update(leftX);
+
+    delay(1000 / 60);  
 }
