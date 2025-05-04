@@ -15,9 +15,9 @@ class GamepadController {
     byte psxButtonToIndex(PsxButtons psxButtons);
 
     static const byte PIN_PS2_ATT = 4;
-    static const byte PIN_PS2_CMD = 5;
-    static const byte PIN_PS2_DAT = 6;
-    static const byte PIN_PS2_CLK = 7;
+    static const byte PIN_PS2_CMD = 5; //falka
+    static const byte PIN_PS2_DAT = 3; //falka
+    static const byte PIN_PS2_CLK = 2; 
 
     PsxControllerBitBang<PIN_PS2_ATT, PIN_PS2_CMD, PIN_PS2_DAT, PIN_PS2_CLK> psx;
     boolean haveController;
