@@ -12,12 +12,14 @@ byte VoltageController::softTransfer(byte data) {
   }
   return inb;
 }
+
 void VoltageController::writePotSoft(int csPin, byte addr, byte val) {
   digitalWrite(csPin, LOW);
   softTransfer(addr);
   softTransfer(val);
   digitalWrite(csPin, HIGH);
 }
+
 void VoltageController::writePotHard(int csPin, byte addr, byte val) {
   digitalWrite(csPin, LOW);
   SPI.transfer(addr);
@@ -49,7 +51,6 @@ void VoltageController::update(int joystickPosition) {
     wiperPositionBlue =  153;                               //jump to 3V 
     wiperPositionPurple = 255 - wiperPositionBlue;          //jump to 2V  
     wheelPosition += step;
-
   }
 
   // LEFT TURN

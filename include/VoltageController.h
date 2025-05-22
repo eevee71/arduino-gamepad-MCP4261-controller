@@ -1,6 +1,5 @@
 #ifndef VOLTAGECONTROLLER_H
 #define VOLTAGECONTROLLER_H
-
 #include <Arduino.h>
 #include <SPI.h>
 
@@ -29,6 +28,7 @@ const int CS2   = 9;
 const int joystickCenterPosition = 128;
 
 class VoltageController {
+    
 public:
     VoltageController();
     void setup(int wiperPositionWhite, int wiperPositionBlue, int wiperPositionGrey);
@@ -38,7 +38,6 @@ public:
     void writePotHard(int csPin, byte addr, byte val);      // writes to MCP using hardware SPI
 
 private:
-
     int wiperPositionWhite;
     int wiperPositionBlue;
     int wiperPositionPurple;
